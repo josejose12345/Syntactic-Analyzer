@@ -1,0 +1,16 @@
+# Ignore object files
+*.o
+
+# Ignore Lex and Yacc generated files
+lex.yy.c
+y.tab.c
+y.tab.h
+
+# Ignore the executable
+workshop_2
+
+# Ignore debug information directories
+*.dSYM/
+
+# Ignore all temporary files
+*~
