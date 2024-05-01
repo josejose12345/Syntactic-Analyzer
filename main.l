@@ -18,14 +18,28 @@ int         { return INT; }
 float       { return FLOAT; }
 string      { return STRING; }
 
+if          { return IF; }
+else        { return ELSE; }
+
 [0-9]+                  { return INTEGER_VALUE; }
 [0-9]+"."[0-9]*         { return FLOAT_VALUE; }
 "\""[^"\n]*"\""         { return STRING_LITERAL; }
 
-"="                     { return EQUALS; }
+"="                     { return ASSIGN; }
+"=="                    { return EQUALS; }
+"<"                     { return LESS_THAN; }
+">"                     { return GREATER_THAN; }
+"<="                    { return LESS_THAN_OR_EQUAL_TO; }
+">="                    { return GREATER_THAN_OR_EQUAL_TO; }
+"!="                    { return NOT_EQUAL; }
+
 ";"                     { return SEMICOLON; }
 
 [a-zA-Z]+               { return IDENTIFIER; }
+"("                     { return LEFT_PAREN; }
+")"                     { return RIGHT_PAREN; }
+"{"                     { return LEFT_BRACE; }
+"}"                     { return RIGHT_BRACE; }
 
 "/*"(.|\n)*"*/"         { /* Ignore comments */ }
 "//".*                  { /* Ignore single line comments */ }

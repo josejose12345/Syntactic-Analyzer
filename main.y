@@ -11,8 +11,9 @@ extern FILE *yyin;     /* Declare yyin */
 %token INT FLOAT STRING
 %token IDENTIFIER
 %token INTEGER_VALUE FLOAT_VALUE STRING_LITERAL
-%token EQUALS
+%token EQUALS LESS_THAN GREATER_THAN LESS_THAN_OR_EQUAL_TO GREATER_THAN_OR_EQUAL_TO NOT_EQUAL ASSIGN
 %token ALPHABET STREAK CATEGORY TWO_WAY_CLASSIFICATION_MODEL
+%token IF ELSE LEFT_PAREN RIGHT_PAREN LEFT_BRACE RIGHT_BRACE
 
 %%
 
@@ -20,10 +21,12 @@ Program : Statement
         | Program Statement
         ;
 
-Statement : VariableDeclaration SEMICOLON;
+Statement : VariableDeclaration SEMICOLON
+           | IfStatement
+           ;
 
 VariableDeclaration : BasicType IDENTIFIER
-                    | BasicType IDENTIFIER EQUALS Expression
+                    | BasicType IDENTIFIER ASSIGN Expression
                     | SpecializedType IDENTIFIER
                     ;
 
@@ -37,7 +40,29 @@ Expression : INTEGER_VALUE
             | STRING_LITERAL
             ;
 
-SpecializedType : ALPHABET | STREAK | CATEGORY | TWO_WAY_CLASSIFICATION_MODEL;
+ComparisonExpression : Expression ComparisonOperator Expression
+                      | IDENTIFIER ComparisonOperator Expression
+                      | IDENTIFIER ComparisonOperator IDENTIFIER
+                      | Expression ComparisonOperator IDENTIFIER
+                      ;
+
+ComparisonOperator : EQUALS
+                   | LESS_THAN
+                   | GREATER_THAN
+                   | LESS_THAN_OR_EQUAL_TO
+                   | GREATER_THAN_OR_EQUAL_TO
+                   | NOT_EQUAL
+                   ;
+
+SpecializedType : ALPHABET
+                | STREAK
+                | CATEGORY
+                | TWO_WAY_CLASSIFICATION_MODEL
+                ;
+
+IfStatement : IF LEFT_PAREN ComparisonExpression RIGHT_PAREN LEFT_BRACE Program RIGHT_BRACE
+            | IF LEFT_PAREN ComparisonExpression RIGHT_PAREN LEFT_BRACE Program RIGHT_BRACE ELSE LEFT_BRACE Program RIGHT_BRACE
+            ;
 
 %%
 

@@ -1,1 +1,6 @@
-two_way_classification_model example;
+if (2 == a) {
+    int a = 2;
+    if (b < 3){
+        int b = 3;
+    }
+}
