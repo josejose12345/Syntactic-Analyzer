@@ -25,6 +25,7 @@ else        { return ELSE; }
 
 getStreaks { return GET_STREAKS; }
 addCategory { return ADD_CATEGORY; }
+getCategories { return GET_CATEGORIES; }
 
 [0-9]+                  { return INTEGER_VALUE; }
 [0-9]+"."[0-9]*         { return FLOAT_VALUE; }

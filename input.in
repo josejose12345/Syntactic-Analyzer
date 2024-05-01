@@ -1,1 +1,1 @@
-a.addCategory('a', 'b');
+a.getCategories();
