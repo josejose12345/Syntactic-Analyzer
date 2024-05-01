@@ -7,14 +7,14 @@ extern FILE *yyin;     /* Declare yyin */
 %}
 
 %start Program
-%token SEMICOLON DOT
-%token INT FLOAT STRING
+%token SEMICOLON DOT COMMA
+%token INT FLOAT STRING SYMBOL
 %token IDENTIFIER
-%token INTEGER_VALUE FLOAT_VALUE STRING_LITERAL
+%token INTEGER_VALUE FLOAT_VALUE STRING_LITERAL SYMBOL_VALUE
 %token EQUALS LESS_THAN GREATER_THAN LESS_THAN_OR_EQUAL_TO GREATER_THAN_OR_EQUAL_TO NOT_EQUAL ASSIGN
 %token ALPHABET STREAK CATEGORY TWO_WAY_CLASSIFICATION_MODEL
 %token IF ELSE LEFT_PAREN RIGHT_PAREN LEFT_BRACE RIGHT_BRACE
-%token GET_STREAKS
+%token GET_STREAKS ADD_CATEGORY
 
 %%
 
@@ -35,17 +35,25 @@ VariableDeclaration : BasicType IDENTIFIER
 BasicType : INT
           | FLOAT
           | STRING
+          | SYMBOL
           ;
 
 Expression : INTEGER_VALUE
             | FLOAT_VALUE
             | STRING_LITERAL
+            | SYMBOL_VALUE
             ;
+
+ExpressionList : Expression
+               | ExpressionList COMMA Expression
+               | // Empty. This allows for functions with no arguments
+               ;
 
 Function : IDENTIFIER DOT FunctionName;
 
 
-FunctionName: GET_STREAKS LEFT_PAREN RIGHT_PAREN;
+FunctionName: GET_STREAKS LEFT_PAREN RIGHT_PAREN
+              |  ADD_CATEGORY LEFT_PAREN ExpressionList RIGHT_PAREN;
 
 
 ComparisonExpression : Expression ComparisonOperator Expression

@@ -17,16 +17,21 @@ two_way_classification_model { return TWO_WAY_CLASSIFICATION_MODEL; }
 int         { return INT; }
 float       { return FLOAT; }
 string      { return STRING; }
+symbol      { return SYMBOL; }
 
 if          { return IF; }
 else        { return ELSE; }
 
 
 getStreaks { return GET_STREAKS; }
+addCategory { return ADD_CATEGORY; }
 
 [0-9]+                  { return INTEGER_VALUE; }
 [0-9]+"."[0-9]*         { return FLOAT_VALUE; }
+
 "\""[^"\n]*"\""         { return STRING_LITERAL; }
+'.'        { return SYMBOL_VALUE; }
+
 
 "="                     { return ASSIGN; }
 "=="                    { return EQUALS; }
@@ -38,6 +43,7 @@ getStreaks { return GET_STREAKS; }
 
 ";"                     { return SEMICOLON; }
 "."                     { return DOT; }
+","                     { return COMMA; }
 
 [a-zA-Z]+               { return IDENTIFIER; }
 "("                     { return LEFT_PAREN; }
