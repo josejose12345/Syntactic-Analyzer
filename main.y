@@ -23,7 +23,7 @@ Program : Statement
         ;
 
 Statement : VariableDeclaration SEMICOLON
-           | FUNCTION SEMICOLON
+           | Function SEMICOLON
            | IfStatement
            ;
 
@@ -42,7 +42,11 @@ Expression : INTEGER_VALUE
             | STRING_LITERAL
             ;
 
-FUNCTION : IDENTIFIER DOT GET_STREAKS LEFT_PAREN RIGHT_PAREN;
+Function : IDENTIFIER DOT FunctionName;
+
+
+FunctionName: GET_STREAKS LEFT_PAREN RIGHT_PAREN;
+
 
 ComparisonExpression : Expression ComparisonOperator Expression
                       | IDENTIFIER ComparisonOperator Expression
