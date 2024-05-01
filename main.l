@@ -1,7 +1,12 @@
 %{
-#include "y.tab.h"
-void yyerror (char *s);
-int yylex();
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include "y.tab.hpp"
+
+void yyerror(const char *s) {  /* Define yyerror */
+  fprintf(stderr, "error: %s\n", s);
+}
 %}
 
 %option yylineno

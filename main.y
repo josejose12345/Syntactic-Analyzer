@@ -4,6 +4,9 @@
 #include <ctype.h>
 extern int yylineno;   /* Declare yylineno */
 extern FILE *yyin;     /* Declare yyin */
+
+int yylex(void);       /* Declare yylex */
+void yyerror(const char *s); /* Declare yyerror */
 %}
 
 %start Program
