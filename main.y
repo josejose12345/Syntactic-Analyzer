@@ -7,13 +7,14 @@ extern FILE *yyin;     /* Declare yyin */
 %}
 
 %start Program
-%token SEMICOLON
+%token SEMICOLON DOT
 %token INT FLOAT STRING
 %token IDENTIFIER
 %token INTEGER_VALUE FLOAT_VALUE STRING_LITERAL
 %token EQUALS LESS_THAN GREATER_THAN LESS_THAN_OR_EQUAL_TO GREATER_THAN_OR_EQUAL_TO NOT_EQUAL ASSIGN
 %token ALPHABET STREAK CATEGORY TWO_WAY_CLASSIFICATION_MODEL
 %token IF ELSE LEFT_PAREN RIGHT_PAREN LEFT_BRACE RIGHT_BRACE
+%token GET_STREAKS
 
 %%
 
@@ -22,6 +23,7 @@ Program : Statement
         ;
 
 Statement : VariableDeclaration SEMICOLON
+           | FUNCTION SEMICOLON
            | IfStatement
            ;
 
@@ -39,6 +41,8 @@ Expression : INTEGER_VALUE
             | FLOAT_VALUE
             | STRING_LITERAL
             ;
+
+FUNCTION : IDENTIFIER DOT GET_STREAKS LEFT_PAREN RIGHT_PAREN;
 
 ComparisonExpression : Expression ComparisonOperator Expression
                       | IDENTIFIER ComparisonOperator Expression

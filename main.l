@@ -21,6 +21,9 @@ string      { return STRING; }
 if          { return IF; }
 else        { return ELSE; }
 
+
+getStreaks { return GET_STREAKS; }
+
 [0-9]+                  { return INTEGER_VALUE; }
 [0-9]+"."[0-9]*         { return FLOAT_VALUE; }
 "\""[^"\n]*"\""         { return STRING_LITERAL; }
@@ -34,6 +37,7 @@ else        { return ELSE; }
 "!="                    { return NOT_EQUAL; }
 
 ";"                     { return SEMICOLON; }
+"."                     { return DOT; }
 
 [a-zA-Z]+               { return IDENTIFIER; }
 "("                     { return LEFT_PAREN; }
