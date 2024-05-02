@@ -76,7 +76,7 @@ extern int yydebug;
     ALPHABET = 277,                /* ALPHABET  */
     STREAK = 278,                  /* STREAK  */
     CATEGORY = 279,                /* CATEGORY  */
-    TWO_WAY_CLASSIFICATION_MODEL = 280, /* TWO_WAY_CLASSIFICATION_MODEL  */
+    MULTICOTOMIZED_STRING = 280,   /* MULTICOTOMIZED_STRING  */
     IF = 281,                      /* IF  */
     ELSE = 282,                    /* ELSE  */
     LEFT_PAREN = 283,              /* LEFT_PAREN  */
@@ -84,8 +84,9 @@ extern int yydebug;
     LEFT_BRACE = 285,              /* LEFT_BRACE  */
     RIGHT_BRACE = 286,             /* RIGHT_BRACE  */
     GET_STREAKS = 287,             /* GET_STREAKS  */
-    ADD_CATEGORY = 288,            /* ADD_CATEGORY  */
-    GET_CATEGORIES = 289           /* GET_CATEGORIES  */
+    ADD_SYMBOL = 288,              /* ADD_SYMBOL  */
+    COUNTER_FUNCTION = 289,        /* COUNTER_FUNCTION  */
+    TOTAL_STREAKS = 290            /* TOTAL_STREAKS  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif

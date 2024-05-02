@@ -13,24 +13,25 @@ void yyerror(const char *s) {  /* Define yyerror */
 
 %%
 
-alphabet { return ALPHABET; }
-streak {return STREAK;}
-category {return CATEGORY;}
-two_way_classification_model { return TWO_WAY_CLASSIFICATION_MODEL; }
-
+Alphabet { return ALPHABET; }
+Streak {return STREAK;}
+Category {return CATEGORY;}
+String      { return STRING; }
+MulticotomizedString {return MULTICOTOMIZED_STRING;}
 
 int         { return INT; }
 float       { return FLOAT; }
-string      { return STRING; }
 symbol      { return SYMBOL; }
+
 
 if          { return IF; }
 else        { return ELSE; }
 
 
 getStreaks { return GET_STREAKS; }
-addCategory { return ADD_CATEGORY; }
-getCategories { return GET_CATEGORIES; }
+addSymbol  { return ADD_SYMBOL; }
+counterFunction { return COUNTER_FUNCTION; }
+totalStreaks { return TOTAL_STREAKS; }
 
 [0-9]+                  { return INTEGER_VALUE; }
 [0-9]+"."[0-9]*         { return FLOAT_VALUE; }
