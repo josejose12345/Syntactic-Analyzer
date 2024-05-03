@@ -95,7 +95,8 @@ extern int yydebug;
     GET_STREAKS = 296,             /* GET_STREAKS  */
     ADD_SYMBOL = 297,              /* ADD_SYMBOL  */
     COUNTER_FUNCTION = 298,        /* COUNTER_FUNCTION  */
-    TOTAL_STREAKS = 299            /* TOTAL_STREAKS  */
+    TOTAL_STREAKS = 299,           /* TOTAL_STREAKS  */
+    MULTICOTOMIZE = 300            /* MULTICOTOMIZE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif

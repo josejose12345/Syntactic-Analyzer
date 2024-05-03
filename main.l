@@ -32,6 +32,7 @@ getStreaks { return GET_STREAKS; }
 addSymbol  { return ADD_SYMBOL; }
 counterFunction { return COUNTER_FUNCTION; }
 totalStreaks { return TOTAL_STREAKS; }
+multicotomize { return MULTICOTOMIZE; }
 
 [0-9]+                  { return INTEGER_VALUE; }  
 [-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)? { return FLOAT_VALUE; }
