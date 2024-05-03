@@ -1,2 +1,1 @@
-MulticotomizedString al;
-al.counterFunction();
+float a[3][5];

@@ -15,8 +15,9 @@ void yyerror(const char *s); /* Declare yyerror */
 %token IDENTIFIER
 %token INTEGER_VALUE FLOAT_VALUE STRING_LITERAL SYMBOL_VALUE
 %token EQUALS LESS_THAN GREATER_THAN LESS_THAN_OR_EQUAL_TO GREATER_THAN_OR_EQUAL_TO NOT_EQUAL ASSIGN
-%token ALPHABET STREAK CATEGORY MULTICOTOMIZED_STRING
-%token IF ELSE LEFT_PAREN RIGHT_PAREN LEFT_BRACE RIGHT_BRACE
+%token PLUS MINUS MULTIPLY DIVIDE MODULO EXPONENT
+%token ALPHABET STREAK CATEGORY MULTICOTOMIZED_STRING TWO_WAY_CLASSIFICATION_MODEL
+%token IF ELSE LEFT_PAREN RIGHT_PAREN LEFT_BRACE RIGHT_BRACE LEFT_BRACKET RIGHT_BRACKET
 %token GET_STREAKS ADD_SYMBOL COUNTER_FUNCTION TOTAL_STREAKS
 
 %%
@@ -32,7 +33,9 @@ Statement : VariableDeclaration SEMICOLON
 
 VariableDeclaration : BasicType IDENTIFIER
                     | BasicType IDENTIFIER ASSIGN Expression
+                    | BasicType IDENTIFIER MatrixSize
                     | SpecializedType IDENTIFIER
+                    | SpecializedType IDENTIFIER LEFT_PAREN ExpressionList RIGHT_PAREN
                     ;
 
 BasicType : INT
@@ -51,6 +54,12 @@ ExpressionList : Expression
                | ExpressionList COMMA Expression
                | // Empty. This allows for functions with no arguments
                ;
+
+MatrixSize : LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET
+           | MatrixSize LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET
+           ;
+
+
 
 Function : IDENTIFIER DOT FunctionName;
 
@@ -77,10 +86,26 @@ ComparisonOperator : EQUALS
                    | NOT_EQUAL
                    ;
 
+ArithmeticOperation : Expression ArithmeticOperator Expression
+                     | IDENTIFIER ArithmeticOperator Expression
+                     | IDENTIFIER ArithmeticOperator IDENTIFIER
+                     | Expression ArithmeticOperator IDENTIFIER
+                        ;
+
+ArithmeticOperator : PLUS 
+                   | MINUS
+                   | MULTIPLY
+                   | DIVIDE
+                   | MODULO
+                   | EXPONENT
+                   ;
+
+
 SpecializedType : ALPHABET
                 | STREAK
                 | CATEGORY
                 | MULTICOTOMIZED_STRING
+                | TWO_WAY_CLASSIFICATION_MODEL
                 ;
 
 IfStatement : IF LEFT_PAREN ComparisonExpression RIGHT_PAREN LEFT_BRACE Program RIGHT_BRACE

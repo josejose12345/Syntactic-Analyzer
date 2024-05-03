@@ -73,20 +73,29 @@ extern int yydebug;
     GREATER_THAN_OR_EQUAL_TO = 274, /* GREATER_THAN_OR_EQUAL_TO  */
     NOT_EQUAL = 275,               /* NOT_EQUAL  */
     ASSIGN = 276,                  /* ASSIGN  */
-    ALPHABET = 277,                /* ALPHABET  */
-    STREAK = 278,                  /* STREAK  */
-    CATEGORY = 279,                /* CATEGORY  */
-    MULTICOTOMIZED_STRING = 280,   /* MULTICOTOMIZED_STRING  */
-    IF = 281,                      /* IF  */
-    ELSE = 282,                    /* ELSE  */
-    LEFT_PAREN = 283,              /* LEFT_PAREN  */
-    RIGHT_PAREN = 284,             /* RIGHT_PAREN  */
-    LEFT_BRACE = 285,              /* LEFT_BRACE  */
-    RIGHT_BRACE = 286,             /* RIGHT_BRACE  */
-    GET_STREAKS = 287,             /* GET_STREAKS  */
-    ADD_SYMBOL = 288,              /* ADD_SYMBOL  */
-    COUNTER_FUNCTION = 289,        /* COUNTER_FUNCTION  */
-    TOTAL_STREAKS = 290            /* TOTAL_STREAKS  */
+    PLUS = 277,                    /* PLUS  */
+    MINUS = 278,                   /* MINUS  */
+    MULTIPLY = 279,                /* MULTIPLY  */
+    DIVIDE = 280,                  /* DIVIDE  */
+    MODULO = 281,                  /* MODULO  */
+    EXPONENT = 282,                /* EXPONENT  */
+    ALPHABET = 283,                /* ALPHABET  */
+    STREAK = 284,                  /* STREAK  */
+    CATEGORY = 285,                /* CATEGORY  */
+    MULTICOTOMIZED_STRING = 286,   /* MULTICOTOMIZED_STRING  */
+    TWO_WAY_CLASSIFICATION_MODEL = 287, /* TWO_WAY_CLASSIFICATION_MODEL  */
+    IF = 288,                      /* IF  */
+    ELSE = 289,                    /* ELSE  */
+    LEFT_PAREN = 290,              /* LEFT_PAREN  */
+    RIGHT_PAREN = 291,             /* RIGHT_PAREN  */
+    LEFT_BRACE = 292,              /* LEFT_BRACE  */
+    RIGHT_BRACE = 293,             /* RIGHT_BRACE  */
+    LEFT_BRACKET = 294,            /* LEFT_BRACKET  */
+    RIGHT_BRACKET = 295,           /* RIGHT_BRACKET  */
+    GET_STREAKS = 296,             /* GET_STREAKS  */
+    ADD_SYMBOL = 297,              /* ADD_SYMBOL  */
+    COUNTER_FUNCTION = 298,        /* COUNTER_FUNCTION  */
+    TOTAL_STREAKS = 299            /* TOTAL_STREAKS  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
