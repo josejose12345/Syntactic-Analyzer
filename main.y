@@ -28,6 +28,7 @@ Program : Statement
 
 Statement : VariableDeclaration SEMICOLON
            | Function SEMICOLON
+           | Assignment SEMICOLON
            | IfStatement
            ;
 
@@ -43,6 +44,11 @@ BasicType : INT
           | STRING
           | SYMBOL
           ;
+
+Assignment : IDENTIFIER ASSIGN Expression
+            | IDENTIFIER MatrixSize ASSIGN Expression
+           ;
+
 
 Expression : INTEGER_VALUE
             | FLOAT_VALUE
