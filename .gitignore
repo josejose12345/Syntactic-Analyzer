@@ -16,3 +16,7 @@ workshop_2
 *~
 
 .vscode/
+
+y.tab.cpp
+lex.yy.cpp
+y.tab.hpp
