@@ -26,6 +26,7 @@ symbol      { return SYMBOL; }
 
 if          { return IF; }
 else        { return ELSE; }
+while       { return WHILE; }
 
 
 getStreaks { return GET_STREAKS; }

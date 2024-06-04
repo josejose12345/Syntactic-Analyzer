@@ -86,17 +86,18 @@ extern int yydebug;
     TWO_WAY_CLASSIFICATION_MODEL = 287, /* TWO_WAY_CLASSIFICATION_MODEL  */
     IF = 288,                      /* IF  */
     ELSE = 289,                    /* ELSE  */
-    LEFT_PAREN = 290,              /* LEFT_PAREN  */
-    RIGHT_PAREN = 291,             /* RIGHT_PAREN  */
-    LEFT_BRACE = 292,              /* LEFT_BRACE  */
-    RIGHT_BRACE = 293,             /* RIGHT_BRACE  */
-    LEFT_BRACKET = 294,            /* LEFT_BRACKET  */
-    RIGHT_BRACKET = 295,           /* RIGHT_BRACKET  */
-    GET_STREAKS = 296,             /* GET_STREAKS  */
-    ADD_SYMBOL = 297,              /* ADD_SYMBOL  */
-    COUNTER_FUNCTION = 298,        /* COUNTER_FUNCTION  */
-    TOTAL_STREAKS = 299,           /* TOTAL_STREAKS  */
-    MULTICOTOMIZE = 300            /* MULTICOTOMIZE  */
+    WHILE = 290,                   /* WHILE  */
+    LEFT_PAREN = 291,              /* LEFT_PAREN  */
+    RIGHT_PAREN = 292,             /* RIGHT_PAREN  */
+    LEFT_BRACE = 293,              /* LEFT_BRACE  */
+    RIGHT_BRACE = 294,             /* RIGHT_BRACE  */
+    LEFT_BRACKET = 295,            /* LEFT_BRACKET  */
+    RIGHT_BRACKET = 296,           /* RIGHT_BRACKET  */
+    GET_STREAKS = 297,             /* GET_STREAKS  */
+    ADD_SYMBOL = 298,              /* ADD_SYMBOL  */
+    COUNTER_FUNCTION = 299,        /* COUNTER_FUNCTION  */
+    TOTAL_STREAKS = 300,           /* TOTAL_STREAKS  */
+    MULTICOTOMIZE = 301            /* MULTICOTOMIZE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
