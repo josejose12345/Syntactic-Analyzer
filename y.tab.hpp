@@ -87,17 +87,18 @@ extern int yydebug;
     IF = 288,                      /* IF  */
     ELSE = 289,                    /* ELSE  */
     WHILE = 290,                   /* WHILE  */
-    LEFT_PAREN = 291,              /* LEFT_PAREN  */
-    RIGHT_PAREN = 292,             /* RIGHT_PAREN  */
-    LEFT_BRACE = 293,              /* LEFT_BRACE  */
-    RIGHT_BRACE = 294,             /* RIGHT_BRACE  */
-    LEFT_BRACKET = 295,            /* LEFT_BRACKET  */
-    RIGHT_BRACKET = 296,           /* RIGHT_BRACKET  */
-    GET_STREAKS = 297,             /* GET_STREAKS  */
-    ADD_SYMBOL = 298,              /* ADD_SYMBOL  */
-    COUNTER_FUNCTION = 299,        /* COUNTER_FUNCTION  */
-    TOTAL_STREAKS = 300,           /* TOTAL_STREAKS  */
-    MULTICOTOMIZE = 301            /* MULTICOTOMIZE  */
+    FOR = 291,                     /* FOR  */
+    LEFT_PAREN = 292,              /* LEFT_PAREN  */
+    RIGHT_PAREN = 293,             /* RIGHT_PAREN  */
+    LEFT_BRACE = 294,              /* LEFT_BRACE  */
+    RIGHT_BRACE = 295,             /* RIGHT_BRACE  */
+    LEFT_BRACKET = 296,            /* LEFT_BRACKET  */
+    RIGHT_BRACKET = 297,           /* RIGHT_BRACKET  */
+    GET_STREAKS = 298,             /* GET_STREAKS  */
+    ADD_SYMBOL = 299,              /* ADD_SYMBOL  */
+    COUNTER_FUNCTION = 300,        /* COUNTER_FUNCTION  */
+    TOTAL_STREAKS = 301,           /* TOTAL_STREAKS  */
+    MULTICOTOMIZE = 302            /* MULTICOTOMIZE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
