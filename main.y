@@ -55,6 +55,7 @@ Expression : INTEGER_VALUE
             | STRING_LITERAL
             | SYMBOL_VALUE
             | IDENTIFIER
+            | ArithmeticOperation
             ;
 
 ExpressionList : Expression
@@ -68,7 +69,11 @@ MatrixSize : LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET
 
 
 
-Function : IDENTIFIER DOT FunctionName;
+Function : IDENTIFIER DOT FunctionName | PiecewiseFunction;
+
+PiecewiseFunction : IDENTIFIER LEFT_PAREN RIGHT_PAREN
+                   | IDENTIFIER LEFT_PAREN ExpressionList RIGHT_PAREN
+                   ;
 
 
 FunctionName: GET_STREAKS LEFT_PAREN RIGHT_PAREN
