@@ -12,6 +12,7 @@ void yyerror(const char *s) {  /* Define yyerror */
 %option yylineno
 
 %%
+
 Alphabet { return ALPHABET; }
 Streak {return STREAK;}
 Category {return CATEGORY;}
@@ -39,9 +40,8 @@ multicotomize { return MULTICOTOMIZE; }
 [0-9]+                  { return INTEGER_VALUE; }  
 [-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)? { return FLOAT_VALUE; }
 
+"\'"([a-zA-Z])"\'"      { return SYMBOL_VALUE; }
 "\""[^"\n]*"\""         { return STRING_LITERAL; }
-'.'        { return SYMBOL_VALUE; }
-
 
 "="                     { return ASSIGN; }
 "=="                    { return EQUALS; }

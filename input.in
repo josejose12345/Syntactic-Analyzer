@@ -1,3 +1,2 @@
-for (int i = 0; i < 3; i = i + 1){
-    int a = 3;
-}
+Alphabet example;
+example.addSymbol('a');
