@@ -12,20 +12,16 @@ $ ./workshop_2
 
 ## Some code examples
 
-`getStreaks`: Is the function to get the streaks of a given String. It is expected to print all the streaks.
-
-```
+- `getStreaks`: Is the function to get the streaks of a given String. It is expected to print all the streaks.
+    ```java
     String example = "aaabbbccc";
     example.getStreaks();
-```
-And here the expected output should be 'a,b,c'
+    ```
+    The expected output should be 'a,b,c'
 
-
-`addSymbol`: Add a new Symbol to an Alphabet.
-
-```
+- `addSymbol`: Add a new Symbol to an Alphabet.
+    ```java
     Alphabet example;
     example.addSymbol('a');
-```
-And now Symbol 'a' is part of the alphabet.
-
+    ```
+    Now, Symbol 'a' is part of the alphabet.
