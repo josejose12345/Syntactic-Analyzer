@@ -7,6 +7,18 @@ extern FILE *yyin;     /* Declare yyin */
 
 int yylex(void);       /* Declare yylex */
 void yyerror(const char *s); /* Declare yyerror */
+// Declaraciones de funciones
+void getStreaks();
+void addSymbol(const char* symbol);
+int counterFunction();
+int totalStreaks();
+void multicotomize(const char* str);
+void totalDataModel();
+void totalDataBlock();
+void totalDataTreatment();
+void getTotalData();
+void getBlockData();
+void getTreatmentData();
 %}
 
 %start Program
@@ -19,6 +31,7 @@ void yyerror(const char *s); /* Declare yyerror */
 %token ALPHABET STREAK CATEGORY MULTICOTOMIZED_STRING TWO_WAY_CLASSIFICATION_MODEL
 %token IF ELSE WHILE FOR LEFT_PAREN RIGHT_PAREN LEFT_BRACE RIGHT_BRACE LEFT_BRACKET RIGHT_BRACKET
 %token GET_STREAKS ADD_SYMBOL COUNTER_FUNCTION TOTAL_STREAKS MULTICOTOMIZE
+%token TOTAL_DATA_MODEL TOTAL_DATA_BLOCK TOTAL_DATA_TREATMENT GET_TOTAL_DATA GET_BLOCK_DATA GET_TREATMENT_DATA
 
 %%
 
@@ -78,12 +91,18 @@ PiecewiseFunction : IDENTIFIER LEFT_PAREN RIGHT_PAREN
                    ;
 
 
-FunctionName: GET_STREAKS LEFT_PAREN RIGHT_PAREN
-            | ADD_SYMBOL LEFT_PAREN SYMBOL_VALUE RIGHT_PAREN
-            | ADD_SYMBOL LEFT_PAREN IDENTIFIER RIGHT_PAREN
-            | COUNTER_FUNCTION LEFT_PAREN RIGHT_PAREN
-            | TOTAL_STREAKS LEFT_PAREN RIGHT_PAREN
-            | MULTICOTOMIZE LEFT_PAREN ExpressionList RIGHT_PAREN
+FunctionName: GET_STREAKS LEFT_PAREN RIGHT_PAREN { getStreaks(); }
+            | ADD_SYMBOL LEFT_PAREN SYMBOL_VALUE RIGHT_PAREN { addSymbol($3); }
+            | ADD_SYMBOL LEFT_PAREN IDENTIFIER RIGHT_PAREN { addSymbol($3); }
+            | COUNTER_FUNCTION LEFT_PAREN RIGHT_PAREN { $$ = counterFunction(); }
+            | TOTAL_STREAKS LEFT_PAREN RIGHT_PAREN { $$ = totalStreaks(); }
+            | MULTICOTOMIZE LEFT_PAREN ExpressionList RIGHT_PAREN { multicotomize("some_string"); /* Implementación específica */ }
+            | TOTAL_DATA_MODEL LEFT_PAREN RIGHT_PAREN { totalDataModel(); }
+            | TOTAL_DATA_BLOCK LEFT_PAREN RIGHT_PAREN { totalDataBlock(); }
+            | TOTAL_DATA_TREATMENT LEFT_PAREN RIGHT_PAREN { totalDataTreatment(); }
+            | GET_TOTAL_DATA LEFT_PAREN RIGHT_PAREN { getTotalData(); }
+            | GET_BLOCK_DATA LEFT_PAREN RIGHT_PAREN { getBlockData(); }
+            | GET_TREATMENT_DATA LEFT_PAREN RIGHT_PAREN { getTreatmentData(); }
             ;
 
 
