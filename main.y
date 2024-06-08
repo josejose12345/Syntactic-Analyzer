@@ -7,6 +7,7 @@ extern FILE *yyin;     /* Declare yyin */
 
 int yylex(void);       /* Declare yylex */
 void yyerror(const char *s); /* Declare yyerror */
+
 // Declaraciones de funciones
 void getStreaks();
 void addSymbol(const char* symbol);
@@ -168,4 +169,60 @@ int main (void) {
 
 void yyerror (char *s) {
     fprintf(stderr, "%s at line %d\n", s, yylineno);
+}
+void getStreaks() {
+    printf("Called getStreaks\n");
+    // Implementación de la lógica de getStreaks
+}
+
+void addSymbol(const char* symbol) {
+    printf("Called addSymbol with %s\n", symbol);
+    // Implementación de la lógica de addSymbol
+}
+
+int counterFunction() {
+    printf("Called counterFunction\n");
+    // Implementación de la lógica de counterFunction
+    return 0;
+}
+
+int totalStreaks() {
+    printf("Called totalStreaks\n");
+    // Implementación de la lógica de totalStreaks
+    return 0;
+}
+
+void multicotomize(const char* str) {
+    printf("Called multicotomize with %s\n", str);
+    // Implementación de la lógica de multicotomize
+}
+
+void totalDataModel() {
+    printf("Called totalDataModel\n");
+    // Implementación de la lógica de totalDataModel
+}
+
+void totalDataBlock() {
+    printf("Called totalDataBlock\n");
+    // Implementación de la lógica de totalDataBlock
+}
+
+void totalDataTreatment() {
+    printf("Called totalDataTreatment\n");
+    // Implementación de la lógica de totalDataTreatment
+}
+
+void getTotalData() {
+    printf("Called getTotalData\n");
+    // Implementación de la lógica de getTotalData
+}
+
+void getBlockData() {
+    printf("Called getBlockData\n");
+    // Implementación de la lógica de getBlockData
+}
+
+void getTreatmentData() {
+    printf("Called getTreatmentData\n");
+    // Implementación de la lógica de getTreatmentData
 }
