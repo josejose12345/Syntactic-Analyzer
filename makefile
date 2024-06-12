@@ -1,11 +1,32 @@
-workshop_2: y.tab.cpp lex.yy.cpp
-	g++ -g y.tab.cpp lex.yy.cpp -o workshop_2
+# Makefile for Flex and Bison project
 
-lex.yy.cpp: main.l
-	flex -o lex.yy.cpp main.l
+# Define the compiler and flags
+CC = gcc
+FLEX = flex
+BISON = bison
+FLEX_FLAGS = 
+BISON_FLAGS = -d
+CFLAGS = -lfl
 
-y.tab.cpp: main.y
-	bison -d -o y.tab.cpp main.y
+# Define the targets
+all: myparser
 
-clean: 
-	rm -rf lex.yy.cpp y.tab.cpp y.tab.hpp workshop_2 workshop_2.dSYM
+myparser: lex.yy.o main.tab.o
+	$(CC) lex.yy.o main.tab.o -o myparser $(CFLAGS)
+
+lex.yy.o: lex.yy.c main.tab.h
+	$(CC) -c lex.yy.c
+
+main.tab.o: main.tab.c
+	$(CC) -c main.tab.c
+
+lex.yy.c: main.l
+	$(FLEX) $(FLEX_FLAGS) main.l
+
+main.tab.c main.tab.h: main.y
+	$(BISON) $(BISON_FLAGS) main.y
+
+clean:
+	rm -f myparser lex.yy.c main.tab.c main.tab.h lex.yy.o main.tab.o
+
+.PHONY: all clean

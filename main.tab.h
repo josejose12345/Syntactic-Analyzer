@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_Y_TAB_HPP_INCLUDED
-# define YY_YY_Y_TAB_HPP_INCLUDED
+#ifndef YY_YY_MAIN_TAB_H_INCLUDED
+# define YY_YY_MAIN_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -98,7 +98,21 @@ extern int yydebug;
     ADD_SYMBOL = 299,              /* ADD_SYMBOL  */
     COUNTER_FUNCTION = 300,        /* COUNTER_FUNCTION  */
     TOTAL_STREAKS = 301,           /* TOTAL_STREAKS  */
-    MULTICOTOMIZE = 302            /* MULTICOTOMIZE  */
+    MULTICOTOMIZE = 302,           /* MULTICOTOMIZE  */
+    TOTAL_DATA_MODEL = 303,        /* TOTAL_DATA_MODEL  */
+    TOTAL_DATA_BLOCK = 304,        /* TOTAL_DATA_BLOCK  */
+    TOTAL_DATA_TREATMENT = 305,    /* TOTAL_DATA_TREATMENT  */
+    GET_TOTAL_DATA = 306,          /* GET_TOTAL_DATA  */
+    GET_BLOCK_DATA = 307,          /* GET_BLOCK_DATA  */
+    GET_TREATMENT_DATA = 308,      /* GET_TREATMENT_DATA  */
+    STREAK_NUMBER = 309,           /* STREAK_NUMBER  */
+    STREAK_AVERAGE = 310,          /* STREAK_AVERAGE  */
+    BLOCK_STREAK_SUM = 311,        /* BLOCK_STREAK_SUM  */
+    TREATMENT_STREAK_SUM = 312,    /* TREATMENT_STREAK_SUM  */
+    AVERAGE_STREAK_BLOCK = 313,    /* AVERAGE_STREAK_BLOCK  */
+    AVERAGE_STREAK_TREATMENT = 314, /* AVERAGE_STREAK_TREATMENT  */
+    MODEL_STREAK_SUM = 315,        /* MODEL_STREAK_SUM  */
+    MODEL_STREAK_AVERAGE = 316     /* MODEL_STREAK_AVERAGE  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -117,4 +131,4 @@ extern YYSTYPE yylval;
 int yyparse (void);
 
 
-#endif /* !YY_YY_Y_TAB_HPP_INCLUDED  */
+#endif /* !YY_YY_MAIN_TAB_H_INCLUDED  */

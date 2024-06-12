@@ -1,2 +1,49 @@
-Alphabet example;
-example.addSymbol('a');
+int a = 5;
+float b = 3.14;
+string s = "hello";
+symbol sym = 'x';
+
+array arr[10];
+matrix mat[5][5];
+
+print(a);
+print(b);
+print(s);
+
+if (a < 10) {
+    print(1);
+} else {
+    print(0);
+}
+
+while (a > 0) {
+    a = a - 1;
+    print(a);
+}
+
+for (int i = 0; i < 10; i = i + 1) {
+    print(i);
+}
+
+getStreaks(arr);
+addSymbol(mat, sym);
+counterFunction(mat);
+totalStreaks();
+multicotomize(arr);
+
+totalDataModel();
+totalDataBlock(2);
+totalDataTreatment(3);
+getTotalData();
+getBlockData(1);
+getTreatmentData(4);
+
+streakNumber(arr);
+totalStreaks();
+streakAverage(mat);
+blockStreakSum(3);
+treatmentStreakSum(2);
+averageStreakBlock(mat);
+averageStreakTreatment(arr);
+modelStreakSum();
+modelStreakAverage();

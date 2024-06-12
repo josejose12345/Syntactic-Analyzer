@@ -1,12 +1,12 @@
 %{
-#include <stdio.h>     /* C declarations used in actions */
+#include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-extern int yylineno;   /* Declare yylineno */
-extern FILE *yyin;     /* Declare yyin */
+extern int yylineno;
+extern FILE *yyin;
 
-int yylex(void);       /* Declare yylex */
-void yyerror(const char *s); /* Declare yyerror */
+int yylex(void);
+void yyerror(const char *s);
 %}
 
 %start Program
@@ -19,6 +19,9 @@ void yyerror(const char *s); /* Declare yyerror */
 %token ALPHABET STREAK CATEGORY MULTICOTOMIZED_STRING TWO_WAY_CLASSIFICATION_MODEL
 %token IF ELSE WHILE FOR LEFT_PAREN RIGHT_PAREN LEFT_BRACE RIGHT_BRACE LEFT_BRACKET RIGHT_BRACKET
 %token GET_STREAKS ADD_SYMBOL COUNTER_FUNCTION TOTAL_STREAKS MULTICOTOMIZE
+%token TOTAL_DATA_MODEL TOTAL_DATA_BLOCK TOTAL_DATA_TREATMENT GET_TOTAL_DATA GET_BLOCK_DATA GET_TREATMENT_DATA
+%token STREAK_NUMBER STREAK_AVERAGE BLOCK_STREAK_SUM TREATMENT_STREAK_SUM
+%token AVERAGE_STREAK_BLOCK AVERAGE_STREAK_TREATMENT MODEL_STREAK_SUM MODEL_STREAK_AVERAGE
 
 %%
 
@@ -27,11 +30,12 @@ Program : Statement
         ;
 
 Statement : VariableDeclaration SEMICOLON
-           | Function SEMICOLON
            | Assignment SEMICOLON
            | IfStatement
            | WhileStatement
            | ForStatement
+           | PrintStatement SEMICOLON /* Added PrintStatement */
+           | StreakFunction SEMICOLON /* Added StreakFunction */
            ;
 
 VariableDeclaration : BasicType IDENTIFIER
@@ -39,6 +43,8 @@ VariableDeclaration : BasicType IDENTIFIER
                     | BasicType IDENTIFIER MatrixSize
                     | SpecializedType IDENTIFIER
                     | SpecializedType IDENTIFIER LEFT_PAREN ExpressionList RIGHT_PAREN
+                    | "array" IDENTIFIER LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET /* Added ArrayDeclaration */
+                    | "matrix" IDENTIFIER LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET /* Added MatrixDeclaration */
                     ;
 
 BasicType : INT
@@ -49,8 +55,8 @@ BasicType : INT
 
 Assignment : IDENTIFIER ASSIGN Expression
             | IDENTIFIER MatrixSize ASSIGN Expression
+            | IDENTIFIER ASSIGN 
            ;
-
 
 Expression : INTEGER_VALUE
             | FLOAT_VALUE
@@ -62,35 +68,13 @@ Expression : INTEGER_VALUE
 
 ExpressionList : Expression
                | ExpressionList COMMA Expression
-               | // Empty. This allows for functions with no arguments
                ;
 
 MatrixSize : LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET
-           | MatrixSize LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET
+           | LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET
            ;
 
-
-
-Function : IDENTIFIER DOT FunctionName | PiecewiseFunction;
-
-PiecewiseFunction : IDENTIFIER LEFT_PAREN RIGHT_PAREN
-                   | IDENTIFIER LEFT_PAREN ExpressionList RIGHT_PAREN
-                   ;
-
-
-FunctionName: GET_STREAKS LEFT_PAREN RIGHT_PAREN
-            | ADD_SYMBOL LEFT_PAREN SYMBOL_VALUE RIGHT_PAREN
-            | ADD_SYMBOL LEFT_PAREN IDENTIFIER RIGHT_PAREN
-            | COUNTER_FUNCTION LEFT_PAREN RIGHT_PAREN
-            | TOTAL_STREAKS LEFT_PAREN RIGHT_PAREN
-            | MULTICOTOMIZE LEFT_PAREN ExpressionList RIGHT_PAREN
-            ;
-
-
 ComparisonExpression : Expression ComparisonOperator Expression
-                      | IDENTIFIER ComparisonOperator Expression
-                      | IDENTIFIER ComparisonOperator IDENTIFIER
-                      | Expression ComparisonOperator IDENTIFIER
                       ;
 
 ComparisonOperator : EQUALS
@@ -102,10 +86,7 @@ ComparisonOperator : EQUALS
                    ;
 
 ArithmeticOperation : Expression ArithmeticOperator Expression
-                     | IDENTIFIER ArithmeticOperator Expression
-                     | IDENTIFIER ArithmeticOperator IDENTIFIER
-                     | Expression ArithmeticOperator IDENTIFIER
-                        ;
+                     ;
 
 ArithmeticOperator : PLUS 
                    | MINUS
@@ -114,7 +95,6 @@ ArithmeticOperator : PLUS
                    | MODULO
                    | EXPONENT
                    ;
-
 
 SpecializedType : ALPHABET
                 | STREAK
@@ -133,13 +113,38 @@ WhileStatement: WHILE LEFT_PAREN ComparisonExpression RIGHT_PAREN LEFT_BRACE Pro
 ForStatement: FOR LEFT_PAREN VariableDeclaration SEMICOLON ComparisonExpression SEMICOLON Assignment RIGHT_PAREN LEFT_BRACE Program RIGHT_BRACE
             ;
 
+/* Added PrintStatement */
+PrintStatement : "print" LEFT_PAREN Expression RIGHT_PAREN
+               ;
+
+/* Added StreakFunction */
+StreakFunction : GET_STREAKS LEFT_PAREN Expression RIGHT_PAREN
+               | ADD_SYMBOL LEFT_PAREN ExpressionList RIGHT_PAREN
+               | COUNTER_FUNCTION LEFT_PAREN Expression RIGHT_PAREN
+               | TOTAL_STREAKS LEFT_PAREN RIGHT_PAREN
+               | MULTICOTOMIZE LEFT_PAREN Expression RIGHT_PAREN
+               | TOTAL_DATA_MODEL LEFT_PAREN RIGHT_PAREN
+               | TOTAL_DATA_BLOCK LEFT_PAREN Expression RIGHT_PAREN
+               | TOTAL_DATA_TREATMENT LEFT_PAREN Expression RIGHT_PAREN
+               | GET_TOTAL_DATA LEFT_PAREN RIGHT_PAREN
+               | GET_BLOCK_DATA LEFT_PAREN Expression RIGHT_PAREN
+               | GET_TREATMENT_DATA LEFT_PAREN Expression RIGHT_PAREN
+               | STREAK_NUMBER LEFT_PAREN Expression RIGHT_PAREN
+               | STREAK_AVERAGE LEFT_PAREN Expression RIGHT_PAREN
+               | BLOCK_STREAK_SUM LEFT_PAREN Expression RIGHT_PAREN
+               | TREATMENT_STREAK_SUM LEFT_PAREN Expression RIGHT_PAREN
+               | AVERAGE_STREAK_BLOCK LEFT_PAREN Expression RIGHT_PAREN
+               | AVERAGE_STREAK_TREATMENT LEFT_PAREN Expression RIGHT_PAREN
+               | MODEL_STREAK_SUM LEFT_PAREN RIGHT_PAREN
+               | MODEL_STREAK_AVERAGE LEFT_PAREN RIGHT_PAREN
+               ;
 
 %%
 
 int main (void) {
     FILE *file = fopen("input.in", "r");
     if (!file) {
-        fprintf(stderr, "Could not open input.in\n");
+        fprintf(stderr, "Could not open input.in\\n");
         return 1;
     }
     yyin = file;
@@ -147,6 +152,6 @@ int main (void) {
     return yyparse();
 }
 
-void yyerror (char *s) {
-    fprintf(stderr, "%s at line %d\n", s, yylineno);
+void yyerror (const char *s) {
+    fprintf(stderr, "%s at line %d\\n", s, yylineno);
 }

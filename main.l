@@ -2,11 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "y.tab.hpp"
+#include "main.tab.h"
 
-void yyerror(const char *s) {  /* Define yyerror */
-  fprintf(stderr, "error: %s\n", s);
-}
+
 %}
 
 %option yylineno
