@@ -117,11 +117,11 @@ WhileStatement: WHILE LEFT_PAREN ComparisonExpression RIGHT_PAREN LEFT_BRACE Pro
 ForStatement: FOR LEFT_PAREN VariableDeclaration SEMICOLON ComparisonExpression SEMICOLON Assignment RIGHT_PAREN LEFT_BRACE Program RIGHT_BRACE
             ;
 
-/* Added PrintStatement */
+/* PrintStatement */
 PrintStatement : PRINT LEFT_PAREN Expression RIGHT_PAREN
                ;
 
-/* Added StreakFunction */
+/* StreakFunction */
 StreakFunction : GET_STREAKS LEFT_PAREN Expression RIGHT_PAREN
                | ADD_SYMBOL LEFT_PAREN ExpressionList RIGHT_PAREN
                | COUNTER_FUNCTION LEFT_PAREN Expression RIGHT_PAREN
