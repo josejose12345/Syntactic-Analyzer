@@ -7,16 +7,18 @@ extern FILE *yyin;
 
 int yylex(void);
 void yyerror(const char *s);
+extern char *yytext; // Variable que contiene el texto que causó el error
+
 %}
 
 %start Program
 %token SEMICOLON DOT COMMA
 %token INT FLOAT STRING SYMBOL
-%token IDENTIFIER
+%token IDENTIFIER 
 %token INTEGER_VALUE FLOAT_VALUE STRING_LITERAL SYMBOL_VALUE
 %token EQUALS LESS_THAN GREATER_THAN LESS_THAN_OR_EQUAL_TO GREATER_THAN_OR_EQUAL_TO NOT_EQUAL ASSIGN
-%token PLUS MINUS MULTIPLY DIVIDE MODULO EXPONENT
-%token ALPHABET STREAK CATEGORY MULTICOTOMIZED_STRING TWO_WAY_CLASSIFICATION_MODEL
+%token PLUS MINUS MULTIPLY DIVIDE MODULO EXPONENT PRINT
+%token ALPHABET STREAK CATEGORY MULTICOTOMIZED_STRING TWO_WAY_CLASSIFICATION_MODEL ARRAY MATRIX
 %token IF ELSE WHILE FOR LEFT_PAREN RIGHT_PAREN LEFT_BRACE RIGHT_BRACE LEFT_BRACKET RIGHT_BRACKET
 %token GET_STREAKS ADD_SYMBOL COUNTER_FUNCTION TOTAL_STREAKS MULTICOTOMIZE
 %token TOTAL_DATA_MODEL TOTAL_DATA_BLOCK TOTAL_DATA_TREATMENT GET_TOTAL_DATA GET_BLOCK_DATA GET_TREATMENT_DATA
@@ -43,8 +45,8 @@ VariableDeclaration : BasicType IDENTIFIER
                     | BasicType IDENTIFIER MatrixSize
                     | SpecializedType IDENTIFIER
                     | SpecializedType IDENTIFIER LEFT_PAREN ExpressionList RIGHT_PAREN
-                    | "array" IDENTIFIER LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET /* Added ArrayDeclaration */
-                    | "matrix" IDENTIFIER LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET /* Added MatrixDeclaration */
+                    | SpecializedType IDENTIFIER LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET /* Added ArrayDeclaration */
+                    | SpecializedType IDENTIFIER LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET /* Added MatrixDeclaration */
                     ;
 
 BasicType : INT
@@ -77,7 +79,7 @@ MatrixSize : LEFT_BRACKET INTEGER_VALUE RIGHT_BRACKET
 ComparisonExpression : Expression ComparisonOperator Expression
                       ;
 
-ComparisonOperator : EQUALS
+ComparisonOperator : ASSIGN
                    | LESS_THAN
                    | GREATER_THAN
                    | LESS_THAN_OR_EQUAL_TO
@@ -101,6 +103,8 @@ SpecializedType : ALPHABET
                 | CATEGORY
                 | MULTICOTOMIZED_STRING
                 | TWO_WAY_CLASSIFICATION_MODEL
+                | ARRAY
+                | MATRIX
                 ;
 
 IfStatement : IF LEFT_PAREN ComparisonExpression RIGHT_PAREN LEFT_BRACE Program RIGHT_BRACE
@@ -114,7 +118,7 @@ ForStatement: FOR LEFT_PAREN VariableDeclaration SEMICOLON ComparisonExpression 
             ;
 
 /* Added PrintStatement */
-PrintStatement : "print" LEFT_PAREN Expression RIGHT_PAREN
+PrintStatement : PRINT LEFT_PAREN Expression RIGHT_PAREN
                ;
 
 /* Added StreakFunction */
@@ -152,6 +156,6 @@ int main (void) {
     return yyparse();
 }
 
-void yyerror (const char *s) {
-    fprintf(stderr, "%s at line %d\\n", s, yylineno);
+void yyerror(const char *s) {
+    fprintf(stderr, "Error: %s at line %d, near '%s'\n", s, yylineno, yytext);
 }

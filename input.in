@@ -1,6 +1,6 @@
 int a = 5;
 float b = 3.14;
-string s = "hello";
+String palabra = "hello";
 symbol sym = 'x';
 
 array arr[10];
@@ -8,7 +8,7 @@ matrix mat[5][5];
 
 print(a);
 print(b);
-print(s);
+print(palabra);
 
 if (a < 10) {
     print(1);
